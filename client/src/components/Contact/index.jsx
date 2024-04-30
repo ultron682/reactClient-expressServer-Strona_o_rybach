@@ -69,12 +69,12 @@ function ContactForm() {
   };
 
   return (
-    <div className="content">
-      <div className="contact">
+    <div className="{styles.content}">
+      <div className="{styles.contact}">
         <h2>Szybkie info</h2>
         <h3>Aktualne informacje kontaktowe zawsze znajdziesz poniżej:</h3>
 
-        <div className="shortInfo">
+        <div className="{styles.shortInfo}">
           <ul>
             <li>Email: wedka@wedkarstwo.com</li>
             <li>Numer kontaktowy: 491413370</li>
@@ -92,37 +92,37 @@ function ContactForm() {
         <h2>Formularz zgłoszenia</h2>
         <form onSubmit={handleFormSubmit}>
           <h4>Zacznijmy od początku... Czego dotyczy zgłoszenie?</h4>
-          <div className="form-check">
+          <div className="{styles.form-check}">
             <input
-              className="form-check-input"
+              className="{styles.form-check-input}"
               id="fix"
               type="radio"
               name="reportType"
             />
-            <label className="form-check-label" htmlFor="fix">
+            <label className="{styles.form-check-label}" htmlFor="fix">
               Poprawa literówki/błędu na stronie
             </label>
           </div>
-          <div className="form-check">
+          <div className="{styles.form-check}">
             <input
-              className="form-check-input"
+              className="{styles.form-check-input}"
               id="placement"
               type="radio"
               name="reportType"
             />
-            <label className="form-check-label" htmlFor="placement">
+            <label className="{styles.form-check-label}" htmlFor="placement">
               Lokowanie produktu
             </label>
           </div>
-          <div className="form-check">
+          <div className="{styles.form-check}">
             <input
-              className="form-check-input"
+              className="{styles.form-check-input}"
               checked
               id="contact"
               type="radio"
               name="reportType"
             />
-            <label className="form-check-label" htmlFor="contact">
+            <label className="{styles.form-check-label}" htmlFor="contact">
               Inne
             </label>
           </div>
@@ -135,7 +135,7 @@ function ContactForm() {
               </td>
               <td>
                 <input
-                  className="form-control"
+                  className="{styles.form-control}"
                   onChange="onFormElementChange()"
                   id="imie"
                   type="text"
@@ -143,7 +143,7 @@ function ContactForm() {
                   size="30"
                 />
               </td>
-              <td className="error">Wpisz poprawne Imię!</td>
+              <td className="{styles.error}">Wpisz poprawne Imię!</td>
             </tr>
             <tr>
               <td>
@@ -151,7 +151,7 @@ function ContactForm() {
               </td>
               <td>
                 <input
-                  className="form-control"
+                  className="{styles.form-control}"
                   onChange="onFormElementChange()"
                   id="naz"
                   type="text"
@@ -159,7 +159,7 @@ function ContactForm() {
                   size="30"
                 />
               </td>
-              <td className="error">Wpisz poprawne Nazwisko!</td>
+              <td className="{styles.error}">Wpisz poprawne Nazwisko!</td>
             </tr>
             <tr>
               <td>
@@ -167,7 +167,7 @@ function ContactForm() {
               </td>
               <td>
                 <input
-                  className="form-control"
+                  className="{styles.form-control}"
                   onChange="onFormElementChange()"
                   id="wiek"
                   type="number"
@@ -175,31 +175,31 @@ function ContactForm() {
                   max="150"
                 />
               </td>
-              <td className="error">Wpisz poprawny wiek!</td>
+              <td className="{styles.error}">Wpisz poprawny wiek!</td>
             </tr>
             <tr>
               <td>Państwo:</td>
               <td>
-                <select className="form-control" id="panstwo" name="panstwo">
+                <select className="{styles.form-control}" id="panstwo" name="panstwo">
                   <option value="p">Polska</option>
                   <option value="n">Germany</option>
                   <option value="i">Italy</option>
                 </select>
               </td>
-              <td className="error">Wybierz swoje państwo!</td>
+              <td className="{styles.error}">Wybierz swoje państwo!</td>
             </tr>
             <tr>
               <td>Telefon:</td>
               <td>
                 <input
-                  className="form-control"
+                  className="{styles.form-control}"
                   onChange="onFormElementChange()"
                   type="number"
                   name="telefon"
                   id="telefon"
                 />
               </td>
-              <td className="error">Wpisz poprawny numer telefonu!</td>
+              <td className="{styles.error}">Wpisz poprawny numer telefonu!</td>
             </tr>
             <tr>
               <td>
@@ -207,7 +207,7 @@ function ContactForm() {
               </td>
               <td>
                 <input
-                  className="form-control"
+                  className="{styles.form-control}"
                   onChange="onFormElementChange()"
                   id="email"
                   type="email"
@@ -217,13 +217,13 @@ function ContactForm() {
                   placeholder="michalmazur@pollub.edu.pl"
                 />
               </td>
-              <td className="error">Wpisz poprawny email!</td>
+              <td className="{styles.error}">Wpisz poprawny email!</td>
             </tr>
           </table>
 
           <h4>Wyjaśnij nam o co dokładniej chodzi...</h4>
           <textarea
-            className="form-control"
+            className="{styles.form-control}"
             onChange="onFormElementChange()"
             id="uwagi"
             name="uwagi"
@@ -231,265 +231,265 @@ function ContactForm() {
             rows="5"
           ></textarea>
           <h4>Wybierz swoje zainteresowania dla celów statystycznych...</h4>
-          <div className="zainteresowania">
-            <div className="zaintereElement">
+          <div className="{styles.zainteresowania}">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie1"
                 name="zainteresowanie"
                 value="Programowanie"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie1">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie1">
                 Programowanie
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie2"
                 name="zainteresowanie"
                 value="Sport"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie2">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie2">
                 Sport
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie3"
                 name="zainteresowanie"
                 value="Muzyka"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie3">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie3">
                 Muzyka
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie4"
                 name="zainteresowanie"
                 value="Sztuka"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie4">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie4">
                 Sztuka
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie5"
                 name="zainteresowanie"
                 value="Podróże"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie5">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie5">
                 Podróże
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie6"
                 name="zainteresowanie"
                 value="Gotowanie"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie6">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie6">
                 Gotowanie
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie7"
                 name="zainteresowanie"
                 value="Języki obce"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie7">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie7">
                 Języki obce
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie8"
                 name="zainteresowanie"
                 value="Fotografia"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie8">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie8">
                 Fotografia
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie9"
                 name="zainteresowanie"
                 value="Film"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie9">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie9">
                 Film
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie10"
                 name="zainteresowanie"
                 value="Książki"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie10">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie10">
                 Książki
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie11"
                 name="zainteresowanie"
                 value="Motoryzacja"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie11">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie11">
                 Motoryzacja
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie12"
                 name="zainteresowanie"
                 value="Historia"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie12">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie12">
                 Historia
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie13"
                 name="zainteresowanie"
                 value="Moda"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie13">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie13">
                 Moda
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie14"
                 name="zainteresowanie"
                 value="Innowacje
                         technologiczne"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie14">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie14">
                 Innowacje
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie15"
                 name="zainteresowanie"
                 value="Nauka"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie15">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie15">
                 Nauka
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie17"
                 name="zainteresowanie"
                 value="Gry komputerowe"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie17">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie17">
                 Gry
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie18"
                 name="zainteresowanie"
                 value="Design"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie18">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie18">
                 Design
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie19"
                 name="zainteresowanie"
                 value="Polityka"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie19">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie19">
                 Polityka
               </label>
               <br />
             </div>
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie20"
                 name="zainteresowanie"
                 value="Zwierzęta"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie20">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie20">
                 Zwierzęta
               </label>
               <br />
             </div>
 
-            <div className="zaintereElement">
+            <div className="{styles.zaintereElement}">
               <input
-                className="form-check-input"
+                className="{styles.form-check-input}"
                 type="checkbox"
                 id="zainteresowanie21"
                 name="zainteresowanie"
                 value="Zwierzęta"
               />
-              <label className="form-check-label" htmlFor="zainteresowanie21">
+              <label className="{styles.form-check-label}" htmlFor="zainteresowanie21">
                 Komputery
               </label>
               <br />
@@ -498,19 +498,19 @@ function ContactForm() {
 
           <br />
 
-          <div className="buttonsForm">
-            <button className="btn btn-outline-primary" type="submit">
+          <div className="{styles.buttonsForm}">
+            <button className="{styles.btn btn-outline-primary}" type="submit">
               Wyślij
             </button>
-            <button className="btn btn-outline-danger" type="reset">
+            <button className="{styles.btn btn-outline-danger}" type="reset">
               Wyczyść
             </button>
           </div>
         </form>
 
-        <div className="buttonsForm">
+        <div className="{styles.buttonsForm}">
           <button
-            className="btn btn-success"
+            className="{styles.btn btn-success}"
             type="button"
             id="btnLoad"
             onClick="loadFromLocalStorage()"
@@ -518,7 +518,7 @@ function ContactForm() {
             Dostępna wersja robocza. Załadować?
           </button>
           <button
-            className="btn btn-primary"
+            className="{styles.btn btn-primary}"
             type="button"
             id="btnSave"
             onClick="saveToLocalStorage()"
@@ -526,7 +526,7 @@ function ContactForm() {
             Zapisz wersje roboczą
           </button>
           <button
-            className="btn btn-danger"
+            className="{styles.btn btn-danger}"
             type="button"
             id="btnClear"
             onClick="clearFromLocalStorage()"
