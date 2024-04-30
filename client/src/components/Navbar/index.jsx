@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import Users from "../Users"; // Import the 'Users' component
 import UserInfo from "../UserInfo";
 
-const Main = () => {
+const Navbar = (props) => {
   const [dane, ustawDane] = useState([]);
   const [daneUser, ustawDaneUser] = useState([]);
 
@@ -123,6 +123,7 @@ const Main = () => {
     }
 
   }
+
   return (
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
@@ -143,11 +144,8 @@ const Main = () => {
           Wyloguj się
         </button>
       </nav>
-
-      {dane.length>0 ? <Users users={dane} /> : <p></p>}
-
-      { <UserInfo userInfo={daneUser} /> }
     </div>
   );
 };
-export default Main;
+
+export default Navbar;

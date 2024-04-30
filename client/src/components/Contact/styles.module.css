@@ -1,0 +1,81 @@
+.contact td input,
+.contact td select {
+    width: 100%;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contact form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 0 0 20px 0;
+}
+
+#map {
+    width: 100%;
+    height: 250px;
+}
+
+tr,
+td {
+    transition: all 1s;
+}
+
+.error {
+    display: none;
+    color: red;
+}
+
+.zainteresowania {
+    display: flex;
+    justify-content: center;
+    justify-items: baseline;
+    flex-wrap: wrap;
+}
+
+.zaintereElement {
+    width: 200px;
+    display: flex;
+    justify-content: left;
+}
+
+.zaintereElement > label {
+    margin-left: 10px;
+}
+
+.shortInfo {
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.buttonsForm {
+    display: flex;
+}
+
+.buttonsForm > button {
+    margin: 7px;
+}
+
+@media only screen and (max-width: 992px) {
+    .buttonsForm {
+        flex-direction: column;
+    }
+
+    .zaintereElement {
+        width: 180px;
+    }
+
+    .contact form > fieldset {
+        flex-direction: column;
+    }
+}
