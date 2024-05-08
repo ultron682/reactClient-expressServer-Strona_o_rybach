@@ -1,7 +1,7 @@
 import styles from "./styles.module.css";
 import React, { useState } from "react";
 
-function ContactForm() {
+const ContactForm = () => {
   const [imie, setImie] = useState("");
   const [nazw, setNazw] = useState("");
   const [wiek, setWiek] = useState("");
@@ -11,7 +11,7 @@ function ContactForm() {
   const [uwagi, setUwagi] = useState("");
   const [zainteresowania, setZainteresowania] = useState([]);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     const formData = {
       email,
@@ -23,14 +23,15 @@ function ContactForm() {
       uwagi,
       zainteresowania: zainteresowania.join(", "),
     };
-    const confirmation = `Czy potwierdzasz poniższe dane?\nEmail: ${email}\nImię i nazwisko: ${imie} ${nazw}\nPaństwo: ${panstwo}\nWiek: ${wiek}\nUwagi: ${uwagi}\nZainteresowania: ${zainteresowania.join(
-      ", "
-    )}`;
+    const confirmation = `Czy potwierdzasz poniższe dane?\nEmail: 
+    ${email}\nImię i nazwisko: ${imie} ${nazw}\nPaństwo: 
+    ${panstwo}\nWiek: ${wiek}\nUwagi: 
+    ${uwagi}\nZainteresowania: ${zainteresowania.join(", ")}`;
     if (window.confirm(confirmation)) {
       // Tutaj możesz dodać kod obsługujący wysłanie danych formularza, np. za pomocą fetch lub Axios
       console.log("Dane formularza:", formData);
     }
-  };
+  }
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -66,7 +67,8 @@ function ContactForm() {
       default:
         break;
     }
-  };
+  }
+
 
   return (
     <div className={styles.content}>
@@ -505,38 +507,9 @@ function ContactForm() {
             <button className={styles.btn btn-outline-danger} type="reset">
               Wyczyść
             </button>
-          </div>
-        </form>
 
-        <div className={styles.buttonsForm}>
-          <button
-            className={styles.btn btn-success}
-            type="button"
-            id="btnLoad"
-            onClick="loadFromLocalStorage()"
-          >
-            Dostępna wersja robocza. Załadować?
-          </button>
-          <button
-            className={styles.btn btn-primary}
-            type="button"
-            id="btnSave"
-            onClick="saveToLocalStorage()"
-          >
-            Zapisz wersje roboczą
-          </button>
-          <button
-            className={styles.btn btn-danger}
-            type="button"
-            id="btnClear"
-            onClick="clearFromLocalStorage()"
-          >
-            Usuń wersje roboczą
-          </button>
-        </div>
-      </div>
+        </form>
     </div>
   );
-}
-
+};
 export default ContactForm;

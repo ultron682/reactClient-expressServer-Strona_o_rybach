@@ -51,7 +51,7 @@ const Main = () => {
         }
       }
     }
-  };
+  }
 
   const handleGetUserInfo = async (e) => {
     e.preventDefault();
@@ -123,6 +123,7 @@ const Main = () => {
     }
 
   }
+
   return (
     <div className={styles.main_container}>
       <nav className={styles.navbar}>
