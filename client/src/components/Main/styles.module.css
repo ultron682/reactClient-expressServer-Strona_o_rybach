@@ -25,3 +25,29 @@
 	cursor: pointer;
 	margin-right: 20px;
 }
+
+
+
+
+
+.PageMain #carousel-example-2 {
+    width: 50%;
+    margin: auto;
+}
+
+@media (max-width: 992px) {
+    .PageMain #carousel-example-2 {
+        width: 100%;
+        margin: auto;
+    }
+}
+
+.carousel-caption h3,
+.carousel-caption p {
+    color: rgb(255, 255, 255);
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+.w-100 {
+    border-radius: 10px;
+}
