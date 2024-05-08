@@ -175,7 +175,7 @@ const Navbar = (props) => {
             </li>
             <li className="nav__item">
               <NavLink
-                to="/news"
+                to="/aboutus"
                 className="nav__link"
                 onClick={closeMenuOnMobile}
               >
@@ -184,7 +184,7 @@ const Navbar = (props) => {
             </li>
             <li className="nav__item">
               <NavLink
-                to="/about-us"
+                to="/tools"
                 className="nav__link"
                 onClick={closeMenuOnMobile}
               >
@@ -193,7 +193,7 @@ const Navbar = (props) => {
             </li>
             <li className="nav__item">
               <NavLink
-                to="/favorite"
+                to="/faq"
                 className="nav__link"
                 onClick={closeMenuOnMobile}
               >
@@ -202,7 +202,7 @@ const Navbar = (props) => {
             </li>
             <li className="nav__item">
               <NavLink
-                to="/location"
+                to="/contact"
                 className="nav__link"
                 onClick={closeMenuOnMobile}
               >
