@@ -237,23 +237,6 @@ const ContactForm = () => {
               cols="70"
               rows="5"
             ></textarea>
-            <h4>Wybierz swoje zainteresowania dla celów statystycznych...</h4>
-            <div className={styles["zainteresowania"]}>
-              <div className={styles["zaintereElement"]}>
-                <input
-                  class="form-check-input"
-                  type="checkbox"
-                  id="zainteresowanie1"
-                  name="zainteresowanie"
-                  value="Programowanie"
-                />
-                <label class="form-check-label" htmlFor="zainteresowanie1">
-                  Programowanie
-                </label>
-                <br />
-              </div>
-              {/* Pozostałe zainteresowania */}
-            </div>
 
             <br />
 

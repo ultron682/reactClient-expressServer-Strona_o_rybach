@@ -1,0 +1,83 @@
+.about-us img {
+    width: 100%;
+    padding: 10px 0;
+    border-radius: 25% 5%;
+}
+
+.about-us {
+    color: #00405e;
+    display: flex;
+    flex-direction: row;
+}
+
+.oneColumn {
+    width: 50%;
+    padding: 0 50px;
+}
+
+.about-us .choose-us .boxsContainer {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.about-us p {
+    font-size: large;
+}
+
+@media only screen and (max-width: 1292px) {
+    .about-us .choose-us .boxsContainer {
+        flex-direction: column;
+    }
+
+    .about-us {
+        flex-direction: column;
+    }
+
+    .oneColumn {
+        width: 100%;
+        padding: 0;
+    }
+}
+
+.about-us .choose-us .box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+.about-us .choose-us .box .circle {
+    width: 69px;
+    color: #4b4c4c;
+    background: #00acfc;
+    margin: 0 20px;
+    border-radius: 100%;
+}
+.about-us .choose-us .box .circle:after {
+    content: "";
+    display: block;
+    padding-bottom: 100%;
+}
+.about-us .choose-us .box .circle .advantage {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 69px;
+    height: 69px;
+    align-items: center;
+    font-size: 48px;
+}
+.about-us .choose-us .box p {
+    line-height: 120%;
+}
+.about-us .advantages ul {
+    list-style-image: url("./list_arrow.png");
+    list-style-position: inside;
+    padding: 0;
+}
+.about-us .advantages ul li {
+    line-height: 1.4;
+    text-transform: uppercase;
+    overflow: hidden;
+    margin-bottom: 10px;
+    text-align: justify;
+}
