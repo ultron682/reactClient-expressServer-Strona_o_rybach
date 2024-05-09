@@ -6,7 +6,8 @@ import Login from "./components/Account/Login";
 import NoPage from "./components/NoPage";
 import ContactForm from "./components/Contact";
 import AboutUs from "./components/AboutUs";
-
+import Faq from "./components/Faq";
+import Tools from "./components/Tools";
 
 export default function App() {
   const userToken = localStorage.getItem("token");
@@ -16,7 +17,8 @@ export default function App() {
       <Route path="/" exact element={<Main />} />
       <Route path="/contact" exact  element={<ContactForm />} />
       <Route path="/aboutus" exact  element={<AboutUs />} />
-
+      <Route path="/faq" exact  element={<Faq />} />
+      <Route path="/tools" exact  element={<Tools />} />
 
       <Route path="/account/signup" exact element={<Signup />} />
       <Route path="/account/login" exact element={<Login />} />

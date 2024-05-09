@@ -158,7 +158,7 @@ const Navbar = (props) => {
     //   </nav>
     // </div>
     <header className="header">
-      <nav className="nav container title">
+      <nav className="navigation container title">
         <NavLink to="/" className="nav__logo">
           Wędkarz GURU
         </NavLink>
