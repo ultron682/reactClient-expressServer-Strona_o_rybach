@@ -159,9 +159,9 @@ const Navbar = (props) => {
     // </div>
     <header className="header">
       <nav className="navigation container title">
-        <NavLink to="/" className="nav__logo">
+        <p className="nav__logo">
           Wędkarz GURU
-        </NavLink>
+        </p>
 
         <div
           className={`nav__menu ${showMenu ? "show-menu" : ""}`}

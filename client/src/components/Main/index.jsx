@@ -6,15 +6,23 @@ import Navbar from "../Navbar";
 import Footer from "../Footer";
 
 import { Zoom } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
 
 import img1 from "./1.jpg";
 import img2 from "./2.jpg";
 import img3 from "./3.jpg";
 
-const Main = () => {
-  const images = [img1, img2, img3];
+const images = [img1, img2, img3];
 
+const zoomOutProperties = {
+  duration: 5000,
+  transitionDuration: 500,
+  infinite: true,
+  indicators: true,
+  scale: 0.4,
+  arrows: true,
+};
+
+const Main = () => {
   return (
     <div>
       <Navbar></Navbar>
@@ -23,8 +31,9 @@ const Main = () => {
           <div class="PageMain">
             <h2>Wędkarstwo</h2>
 
+
             <div className="slide-container">
-              <Zoom scale={0.4}>
+              <Zoom {...zoomOutProperties}>
                 {images.map((each, index) => (
                   <img key={index} style={{ width: "100%" }} src={each} />
                 ))}
