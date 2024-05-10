@@ -1,7 +1,7 @@
 .header {
     box-sizing: border-box;
     width: 100%;
-    height: 80px;
+    height: 100px;
     background-image: linear-gradient(to top, #ff000000, #6ebeff7e);
     display: flex;
     padding: 0 20px;
@@ -81,7 +81,7 @@
     margin: 0;
 }
 
-@media screen and (max-width: 1150px) {
+@media screen and (max-width: 1550px) {
     .nav__menu {
         position: fixed;
         top: 0;
@@ -93,10 +93,11 @@
         height: 100%;
         padding: 6rem 3rem 0;
         transition: right 0.4s;
+        z-index: 1000;
     }
 }
 
-@media screen and (min-width: 1150px) {
+@media screen and (min-width: 1550px) {
     .nav {
         height: calc(var(--header-height) + 1rem);
     }

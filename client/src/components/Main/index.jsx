@@ -1,27 +1,46 @@
 import styles from "./styles.module.css";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 
 import Navbar from "../Navbar";
 import Footer from "../Footer";
-
-import { Zoom } from "react-slideshow-image";
 
 import img1 from "./1.jpg";
 import img2 from "./2.jpg";
 import img3 from "./3.jpg";
 
-const images = [img1, img2, img3];
+// const images = [img1, img2, img3];
+import { Slide } from 'react-slideshow-image';
+import 'react-slideshow-image/dist/styles.css'
 
-const zoomOutProperties = {
-  duration: 5000,
-  transitionDuration: 500,
-  infinite: true,
-  indicators: true,
-  scale: 0.4,
-  arrows: true,
-};
+const spanStyle = {
+  padding: '20px',
+  backgroundColor: 'rgba(252, 252, 252, 0.3)',
+  color: '#000000',
+  borderRadius: '10px',
+}
 
+const divStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundSize: 'cover',
+  height: '400px'
+}
+const slideImages = [
+  {
+    url: img1,
+    caption: 'Wędkarstwo to pasja'
+  },
+  {
+    url: img2,
+    caption: 'Wędkarstwo to styl życia'
+  },
+  {
+    url: img3,
+    caption: 'Wędkarstwo to piękno natury'
+  },
+];
 const Main = () => {
   return (
     <div>
@@ -31,13 +50,21 @@ const Main = () => {
           <div class="PageMain">
             <h2>Wędkarstwo</h2>
 
-
             <div className="slide-container">
-              <Zoom {...zoomOutProperties}>
-                {images.map((each, index) => (
-                  <img key={index} style={{ width: "100%" }} src={each} />
+              <Slide>
+                {slideImages.map((slideImage, index) => (
+                  <div key={index}>
+                    <div
+                      style={{
+                        ...divStyle,
+                        backgroundImage: `url(${slideImage.url})`,
+                      }}
+                    >
+                      <span style={spanStyle}>{slideImage.caption}</span>
+                    </div>
+                  </div>
                 ))}
-              </Zoom>
+              </Slide>
             </div>
 
             <h3>

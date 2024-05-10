@@ -4,71 +4,59 @@ import React, { useState } from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-const ContactForm = () => {
-  const [imie, setImie] = useState("");
-  const [nazw, setNazw] = useState("");
-  const [wiek, setWiek] = useState("");
-  const [panstwo, setPanstwo] = useState("p");
-  const [telefon, setTelefon] = useState("");
-  const [email, setEmail] = useState("");
-  const [uwagi, setUwagi] = useState("");
-  const [zainteresowania, setZainteresowania] = useState([]);
+import axios from 'axios';
 
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const formData = {
-      email,
-      imie,
-      nazw,
-      wiek,
-      panstwo,
-      telefon,
-      uwagi,
-      zainteresowania: zainteresowania.join(", "),
-    };
-    const confirmation = `Czy potwierdzasz poniższe dane?\nEmail: 
-    ${email}\nImię i nazwisko: ${imie} ${nazw}\nPaństwo: 
-    ${panstwo}\nWiek: ${wiek}\nUwagi: 
-    ${uwagi}\nZainteresowania: ${zainteresowania.join(", ")}`;
-    if (window.confirm(confirmation)) {
-      // Tutaj możesz dodać kod obsługujący wysłanie danych formularza, np. za pomocą fetch lub Axios
-      console.log("Dane formularza:", formData);
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    age: "",
+    country: "Polska",
+    phone: "",
+    email: "",
+  });
+
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+    // Walidacja pól (możesz dostosować warunki walidacji)
+    if (name === "firstName" && value.trim() === "") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        firstName: "Pole wymagane",
+      }));
+    } else if (name === "lastName" && value.trim() === "") {
+      setErrors((prevErrors) => ({ ...prevErrors, lastName: "Pole wymagane" }));
+    } else if (name === "age" && (value < 18 || value > 100)) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        age: "Wiek musi być między 18 a 100",
+      }));
+    } else {
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     }
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    switch (name) {
-      case "imie":
-        setImie(value);
-        break;
-      case "nazw":
-        setNazw(value);
-        break;
-      case "wiek":
-        setWiek(value);
-        break;
-      case "panstwo":
-        setPanstwo(value);
-        break;
-      case "telefon":
-        setTelefon(value);
-        break;
-      case "email":
-        setEmail(value);
-        break;
-      case "uwagi":
-        setUwagi(value);
-        break;
-      case "zainteresowanie":
-        if (e.target.checked) {
-          setZainteresowania([...zainteresowania, value]);
-        } else {
-          setZainteresowania(zainteresowania.filter((item) => item !== value));
-        }
-        break;
-      default:
-        break;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // Sprawdzenie czy nie ma błędów walidacji przed wysłaniem formularza
+    if (Object.keys(errors).some((key) => errors[key])) {
+      console.log("Formularz zawiera błędy");
+      return;
+    }
+    try {
+      // Wysłanie danych na serwer za pomocą Axios w formie POST
+      const response = await axios.post("adres_twojego_serwera", formData);
+      console.log("Dane zostały wysłane pomyślnie!", response.data);
+      // Tutaj możesz dodać logikę po pomyślnym wysłaniu danych
+    } catch (error) {
+      console.error("Wystąpił błąd podczas wysyłania danych:", error);
+      // Tutaj możesz dodać obsługę błędu
     }
   };
 
@@ -95,159 +83,78 @@ const ContactForm = () => {
             </div>
 
             <h2>Formularz zgłoszenia</h2>
-            <form onSubmit={handleFormSubmit}>
-              <h4>Zacznijmy od początku... Czego dotyczy zgłoszenie?</h4>
-              <div class="form-check">
+            <form onSubmit={handleSubmit}>
+              <label>
+                Imię:
                 <input
-                  class="form-check-input"
-                  id="fix"
-                  type="radio"
-                  name="reportType"
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
                 />
-                <label class="form-check-label" htmlFor="fix">
-                  Poprawa literówki/błędu na stronie
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  id="placement"
-                  type="radio"
-                  name="reportType"
-                />
-                <label class="form-check-label" htmlFor="placement">
-                  Lokowanie produktu
-                </label>
-              </div>
-              <div class="form-check">
-                <input
-                  class="form-check-input"
-                  checked
-                  id="contact"
-                  type="radio"
-                  name="reportType"
-                />
-                <label class="form-check-label" htmlFor="contact">
-                  Inne
-                </label>
-              </div>
-
-              <h4>Twoje podstawowe dane</h4>
-              <table>
-                <tr>
-                  <td>
-                    <label htmlFor="imie">Imię: </label>
-                  </td>
-                  <td>
-                    <input
-                      class="form-control"
-                      onChange="onFormElementChange()"
-                      id="imie"
-                      type="text"
-                      maxLength="20"
-                      size="30"
-                    />
-                  </td>
-                  <td className={styles["error"]}>Wpisz poprawne Imię!</td>
-                </tr>
-                <tr>
-                  <td>
-                    <label htmlFor="naz">Nazwisko: </label>
-                  </td>
-                  <td>
-                    <input
-                      class="form-control"
-                      onChange="onFormElementChange()"
-                      id="naz"
-                      type="text"
-                      maxLength="20"
-                      size="30"
-                    />
-                  </td>
-                  <td className={styles["error"]}>Wpisz poprawne Nazwisko!</td>
-                </tr>
-                <tr>
-                  <td>
-                    <label htmlFor="wiek">Wiek: </label>
-                  </td>
-                  <td>
-                    <input
-                      class="form-control"
-                      onChange="onFormElementChange()"
-                      id="wiek"
-                      type="number"
-                      min="1"
-                      max="150"
-                    />
-                  </td>
-                  <td className={styles["error"]}>Wpisz poprawny wiek!</td>
-                </tr>
-                <tr>
-                  <td>Państwo:</td>
-                  <td>
-                    <select class="form-control" id="panstwo" name="panstwo">
-                      <option value="p">Polska</option>
-                      <option value="n">Germany</option>
-                      <option value="i">Italy</option>
-                    </select>
-                  </td>
-                  <td className={styles["error"]}>Wybierz swoje państwo!</td>
-                </tr>
-                <tr>
-                  <td>Telefon:</td>
-                  <td>
-                    <input
-                      class="form-control"
-                      onChange="onFormElementChange()"
-                      type="number"
-                      name="telefon"
-                      id="telefon"
-                    />
-                  </td>
-                  <td className={styles["error"]}>
-                    Wpisz poprawny numer telefonu!
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <label htmlFor="email">Adres kontaktowy e-mail: </label>
-                  </td>
-                  <td>
-                    <input
-                      class="form-control"
-                      onChange="onFormElementChange()"
-                      id="email"
-                      type="email"
-                      name="email"
-                      maxLength="30"
-                      size="30"
-                      placeholder="michalmazur@pollub.edu.pl"
-                    />
-                  </td>
-                  <td className={styles["error"]}>Wpisz poprawny email!</td>
-                </tr>
-              </table>
-
-              <h4>Wyjaśnij nam o co dokładniej chodzi...</h4>
-              <textarea
-                class="form-control"
-                onChange="onFormElementChange()"
-                id="uwagi"
-                name="uwagi"
-                cols="70"
-                rows="5"
-              ></textarea>
-
+              </label>
+              {errors.firstName && (
+                <span style={{ color: "red" }}>{errors.firstName}</span>
+              )}
               <br />
-
-              <div className={styles["buttonsForm"]}>
-                <button class="btn btn-outline-primary" type="submit">
-                  Wyślij
-                </button>
-                <button class="btn btn-outline-danger" type="reset">
-                  Wyczyść
-                </button>
-              </div>
+              <label>
+                Nazwisko:
+                <input
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                />
+              </label>
+              {errors.lastName && (
+                <span style={{ color: "red" }}>{errors.lastName}</span>
+              )}
+              <br />
+              <label>
+                Wiek:
+                <input
+                  type="number"
+                  name="age"
+                  value={formData.age}
+                  onChange={handleChange}
+                />
+              </label>
+              {errors.age && <span style={{ color: "red" }}>{errors.age}</span>}
+              <br />
+              <label>
+                Państwo:
+                <select
+                  name="country"
+                  value={formData.country}
+                  onChange={handleChange}
+                >
+                  <option value="Polska">Polska</option>
+                  <option value="Niemcy">Niemcy</option>
+                  <option value="Francja">Francja</option>
+                </select>
+              </label>
+              <br />
+              <label>
+                Telefon:
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                />
+              </label>
+              <br />
+              <label>
+                Adres kontaktowy e-mail:
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                />
+              </label>
+              <br />
+              <button type="submit">Wyślij</button>
             </form>
           </div>
         </div>

@@ -5,9 +5,8 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-import Toolss from "../Toolss.js";
 
-export default class Tools extends React.Component {
+export default class AdminPanel extends React.Component {
   state = {
     tools: [],
   };
@@ -40,11 +39,12 @@ export default class Tools extends React.Component {
         <Navbar></Navbar>
         <main>
           <div class="content">
-            {this.state.tools.length > 0 ? (
+            <h1>Admin panel</h1>
+            {/* {this.state.tools.length > 0 ? (
               <Toolss tools={this.state.tools} />
             ) : (
               <p>Ładowanie dostępnych narzędzi</p>
-            )}
+            )} */}
           </div>
         </main>
         <Footer></Footer>

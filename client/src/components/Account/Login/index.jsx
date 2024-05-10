@@ -14,7 +14,7 @@ const Login = () => {
       const url = "http://localhost:8080/api/auth";
       const { data: res } = await axios.post(url, data);
       localStorage.setItem("token", res.data);
-      window.location = "/";
+      window.location = "/admin";
     } catch (error) {
       if (
         error.response &&
@@ -51,15 +51,15 @@ const Login = () => {
             />
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
-              Sing In
+              Sign In
             </button>
           </form>
         </div>
         <div className={styles.right}>
           <h1>New Here ?</h1>
-          <Link to="/signup">
+          <Link to="/account/signup">
             <button type="button" className={styles.white_btn}>
-              Sing Up
+              Sign Up
             </button>
           </Link>
         </div>

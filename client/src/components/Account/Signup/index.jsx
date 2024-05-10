@@ -20,7 +20,7 @@ const Signup = () => {
     try {
       const url = "http://localhost:8080/api/users";
       const { data: res } = await axios.post(url, data);
-      navigate("/login");
+      navigate("/account/login");
       console.log(res.message);
     } catch (error) {
       if (
@@ -37,9 +37,9 @@ const Signup = () => {
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
           <h1>Welcome Back</h1>
-          <Link to="/login">
+          <Link to="/account//login">
             <button type="button" className={styles.white_btn}>
-              Sing in
+              Sign in
             </button>
           </Link>
         </div>
@@ -84,7 +84,7 @@ const Signup = () => {
             />
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
-              Sing Up
+              Sign Up
             </button>
           </form>
         </div>
