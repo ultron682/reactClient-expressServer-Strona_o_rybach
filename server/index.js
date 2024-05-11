@@ -69,7 +69,7 @@ app.post('/api/image-upload', imageUpload.array("my-image-file"), (req, res) => 
   console.log('POST request received to /image-upload.');
   console.log('Axios POST body: ', req.body);
   //res.send('POST request recieved on server to /image-upload.');
-  res.status(200).send({ message: "Zdjecie przeslane", imageUrl:"http://localhost:8080/uploaded_files/" + req.files[0].filename });
+  res.status(200).send({ message: "Zdjecie przeslane", imageUrl:"/uploaded_files/" + req.files[0].filename });
 }) 
 
 

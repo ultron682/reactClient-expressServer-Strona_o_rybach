@@ -7,12 +7,20 @@ import Footer from "../../Footer";
 
 export default class AddModifyDeleteTool extends React.Component {
   state = {
-    tool: {},
+    tool: {
+      _id: "",
+      image_url: "",
+      title: ""
+    },
     image: null,
   };
 
   componentDidMount() {
     try {
+      // var newtool = { ...this.state.tool };
+      // newtool._id = window.location.href.split("/")[5];
+      // this.setState({ tool: newtool });
+
       //this.setState({ tool: {_id: window.location.href.split("/")[5]} });
       this.state.tool._id = window.location.href.split("/")[5];
 
@@ -20,8 +28,8 @@ export default class AddModifyDeleteTool extends React.Component {
         .get("http://localhost:8080/api/tools/" + this.state.tool._id)
         .then((res) => {
           const tool = res.data.data;
-          tool.image_url = "http://localhost:8080" + tool.image_url;
-          this.setState({ tool });
+          //tool.image_url = "http://localhost:8080" + tool.image_url;
+          this.setState({tool: tool });
           console.log(tool);
         });
     } catch (error) {
@@ -34,6 +42,14 @@ export default class AddModifyDeleteTool extends React.Component {
       }
     }
   }
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    const newtool = { ...this.state.tool };
+    console.log(newtool[name]);
+    newtool[name] = value;
+    this.setState({ tool: newtool });
+  };
 
   deleteTool = async () => {
     const id = this.state.tool._id;
@@ -51,6 +67,8 @@ export default class AddModifyDeleteTool extends React.Component {
     //wysłanie żądania o dane:
     const { data: res } = await axios(config);
     console.log(res);
+
+    window.location = "/admin";
   };
 
   updateTool = async () => {
@@ -69,6 +87,8 @@ export default class AddModifyDeleteTool extends React.Component {
     //wysłanie żądania o dane:
     const { data: res } = await axios(config);
     console.log(res);
+
+    window.location = "/admin";
   };
 
   handleFileInput = (e) => {
@@ -77,7 +97,7 @@ export default class AddModifyDeleteTool extends React.Component {
     const formData = new FormData();
     formData.append("my-image-file", e.target.files[0], e.target.files[0].name);
     const image = formData;
-    this.setState({image});
+    this.setState({ image });
   };
 
   handleClick = () => {
@@ -87,10 +107,14 @@ export default class AddModifyDeleteTool extends React.Component {
         console.log("Axios response: ", res.data.imageUrl);
 
         //this.state.tool.image_url = res.data.imageUrl;
-        var newtool = {...this.state.tool}
+        var newtool = { ...this.state.tool };
         newtool.image_url = res.data.imageUrl;
-        this.setState({tool: newtool});
+        this.setState({ tool: newtool });
       });
+  };
+
+  cancelClick = () => {
+    window.location = "/admin";
   };
 
   // deleteContact = async (id) => {
@@ -122,16 +146,29 @@ export default class AddModifyDeleteTool extends React.Component {
           <div class="content">
             <br />
             <h2>Edycja narzędzia </h2>
-            <input type="text" readOnly value={this.state.tool._id}></input>
-            <input type="text" value={this.state.tool.title}></input>
-            <input type="text" value={this.state.tool.image_url}></input>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              readOnly
+              value={this.state.tool._id}
+            ></input>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.tool.title}
+            ></input>
+            <input
+              type="text"
+              onChange={this.handleChange}
+              value={this.state.tool.image_url}
+            ></input>
             <button onClick={this.deleteTool}>Usuń narzędzie</button>
 
             <button onClick={this.handleClick}>Upload!</button>
             <input type="file" onChange={this.handleFileInput} />
 
             <button onClick={this.updateTool}>Zapisz zmiany</button>
-            {/* <button onClick={this.handleClick}>Anuluj</button> */}
+            <button onClick={this.cancelClick}>Anuluj</button>
           </div>
         </main>
         <Footer></Footer>
