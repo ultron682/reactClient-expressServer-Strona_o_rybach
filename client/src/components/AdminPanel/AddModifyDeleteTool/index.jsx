@@ -59,13 +59,16 @@ export default class AddModifyDeleteTool extends React.Component {
     const token = localStorage.getItem("token");
     const config = {
       method: "patch",
-      url: "http://localhost:8080/api/tools",
-      data: { _id: id },
+      url: "http://localhost:8080/api/tools/" + id,
+      data: this.state.tool,
       headers: {
         "Content-Type": "application/json",
         "x-access-token": token,
       },
     };
+    //wysłanie żądania o dane:
+    const { data: res } = await axios(config);
+    console.log(res);
   };
 
   handleFileInput = (e) => {
@@ -81,7 +84,12 @@ export default class AddModifyDeleteTool extends React.Component {
     axios
       .post("http://localhost:8080/api/image-upload", this.state.image)
       .then((res) => {
-        console.log("Axios response: ", res);
+        console.log("Axios response: ", res.data.imageUrl);
+
+        //this.state.tool.image_url = res.data.imageUrl;
+        var newtool = {...this.state.tool}
+        newtool.image_url = res.data.imageUrl;
+        this.setState({tool: newtool});
       });
   };
 
@@ -121,6 +129,9 @@ export default class AddModifyDeleteTool extends React.Component {
 
             <button onClick={this.handleClick}>Upload!</button>
             <input type="file" onChange={this.handleFileInput} />
+
+            <button onClick={this.updateTool}>Zapisz zmiany</button>
+            {/* <button onClick={this.handleClick}>Anuluj</button> */}
           </div>
         </main>
         <Footer></Footer>

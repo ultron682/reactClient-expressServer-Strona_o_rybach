@@ -23,7 +23,7 @@ app.use(express.json())
 const corsOrigin = 'http://localhost:3000';
 app.use(cors({
   origin:[corsOrigin],
-  methods:['GET','POST'],
+  methods:['GET','POST', 'PATCH', 'DELETE'],
   credentials: true 
 })); 
 const port = process.env.PORT || 8080
@@ -68,7 +68,8 @@ const imageUpload = multer({storage: storage})
 app.post('/api/image-upload', imageUpload.array("my-image-file"), (req, res) => {
   console.log('POST request received to /image-upload.');
   console.log('Axios POST body: ', req.body);
-  res.send('POST request recieved on server to /image-upload.');
+  //res.send('POST request recieved on server to /image-upload.');
+  res.status(200).send({ message: "Zdjecie przeslane", imageUrl:"http://localhost:8080/uploaded_files/" + req.files[0].filename });
 }) 
 
 
