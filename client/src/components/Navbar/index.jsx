@@ -123,7 +123,7 @@ export default class Navbar extends React.Component {
       //   </nav>
       // </div>
       <header className="header">
-        <nav className="navigation container title">
+        <nav className="navigation main_container title">
           <p className="nav__logo">Wędkarz GURU</p>
 
           <div
@@ -178,9 +178,22 @@ export default class Navbar extends React.Component {
               </li>
 
               {this.state.token !== null ? (
-                <button className="nav__link" onClick={this.handleLogout}>
-                  Wyloguj się
-                </button>
+                <>
+                  <li className="nav__item">
+                    <NavLink
+                      to="/admin"
+                      className="nav__link"
+                      onClick={this.closeMenuOnMobile}
+                    >
+                      Panel administratora
+                    </NavLink>
+                  </li>
+                  <li className="nav__item">
+                    <NavLink className="nav__link" onClick={this.handleLogout}>
+                      Wyloguj się
+                    </NavLink>
+                  </li>
+                </>
               ) : (
                 <li className="nav__item">
                   <NavLink

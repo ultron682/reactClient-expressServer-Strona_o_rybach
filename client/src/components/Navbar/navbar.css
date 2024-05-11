@@ -28,9 +28,13 @@
 
 .nav__toggle,
 .nav__close {
-    font-size: 1.5rem;
+    font-size: 3rem;
     color: var(--title-color);
     cursor: pointer;
+}
+
+.nav__item{
+    list-style: none;
 }
 
 .nav__cta {
@@ -110,4 +114,8 @@
         flex-direction: row;
         column-gap: 2.5rem;
     }
+}
+
+.main_container{
+    width: 100%;
 }

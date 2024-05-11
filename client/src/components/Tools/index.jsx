@@ -5,7 +5,7 @@ import React from "react";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 
-import Toolss from "../Toolss.js";
+import Toolss from "./Toolss.js";
 
 export default class Tools extends React.Component {
   state = {

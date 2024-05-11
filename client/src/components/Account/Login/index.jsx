@@ -2,12 +2,18 @@ import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import styles from "./styles.module.css";
+
+
 const Login = () => {
   const [data, setData] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
+  
+  
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -42,7 +48,7 @@ const Login = () => {
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Hasło"
               name="password"
               onChange={handleChange}
               value={data.password}
@@ -51,7 +57,7 @@ const Login = () => {
             />
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
-              Sign In
+              Zaloguj się
             </button>
           </form>
         </div>
@@ -59,7 +65,7 @@ const Login = () => {
           <h1>New Here ?</h1>
           <Link to="/account/signup">
             <button type="button" className={styles.white_btn}>
-              Sign Up
+              Zarejestruj się
             </button>
           </Link>
         </div>

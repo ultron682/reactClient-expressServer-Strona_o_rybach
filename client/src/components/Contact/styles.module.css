@@ -1,4 +1,5 @@
 .contact td input,
+.contact td textarea,
 .contact td select {
     width: 100%;
 }
@@ -24,6 +25,7 @@
 tr,
 td {
     transition: all 1s;
+    min-width: 200px;
 }
 
 .error {

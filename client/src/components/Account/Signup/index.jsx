@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { Link, useNavigate } from "react-router-dom";
 import styles from "./styles.module.css";
+
+
 const Signup = () => {
   const [data, setData] = useState({
     firstName: "",
@@ -10,11 +12,17 @@ const Signup = () => {
     email: "",
     password: "",
   });
+
+
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+
   const handleChange = ({ currentTarget: input }) => {
     setData({ ...data, [input.name]: input.value });
   };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -32,14 +40,16 @@ const Signup = () => {
       }
     }
   };
+
+
   return (
     <div className={styles.signup_container}>
       <div className={styles.signup_form_container}>
         <div className={styles.left}>
           <h1>Welcome Back</h1>
-          <Link to="/account//login">
+          <Link to="/account/login">
             <button type="button" className={styles.white_btn}>
-              Sign in
+              Zaloguj się
             </button>
           </Link>
         </div>
@@ -48,7 +58,7 @@ const Signup = () => {
             <h1>Create Account</h1>
             <input
               type="text"
-              placeholder="First Name"
+              placeholder="Imię"
               name="firstName"
               onChange={handleChange}
               value={data.firstName}
@@ -57,7 +67,7 @@ const Signup = () => {
             />
             <input
               type="text"
-              placeholder="Last Name"
+              placeholder="Nazwisko"
               name="lastName"
               onChange={handleChange}
               value={data.lastName}
@@ -75,7 +85,7 @@ const Signup = () => {
             />
             <input
               type="password"
-              placeholder="Password"
+              placeholder="Hasło"
               name="password"
               onChange={handleChange}
               value={data.password}
@@ -84,7 +94,7 @@ const Signup = () => {
             />
             {error && <div className={styles.error_msg}>{error}</div>}
             <button type="submit" className={styles.green_btn}>
-              Sign Up
+              Zarejestruj się
             </button>
           </form>
         </div>
