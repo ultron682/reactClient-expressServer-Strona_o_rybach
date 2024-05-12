@@ -7,9 +7,8 @@ import Footer from "../../Footer";
 
 import Contacts from "./Contacts";
 import Tools from "./Tools";
-import { Navigate } from "react-router-dom";
 
-
+import { Link } from "react-router-dom";
 
 export default class AdminPanel extends React.Component {
   state = {
@@ -94,8 +93,13 @@ export default class AdminPanel extends React.Component {
 
             <br />
             <h2>Wszystkie narzędzia</h2>
-            <Tools tools={this.state.tools} 
-            editTool={this.editTool}></Tools>
+            <Tools tools={this.state.tools} editTool={this.editTool}></Tools>
+
+            <Link to="/admin/addmodifydeletetool/">
+              <button>
+                Dodaj nowe narzędzie
+              </button>
+            </Link>
           </div>
         </main>
         <Footer></Footer>

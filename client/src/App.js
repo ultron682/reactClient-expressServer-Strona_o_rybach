@@ -25,8 +25,8 @@ export default function App() {
       <Route path="/account/login" exact element={<Login />} />
       
       {userToken && <Route path="/admin" exact element={<AdminPanel />} />}
-      {userToken && <Route path="/admin/addmodifydeletetool/:id" exact element={<AddModifyDeleteTool />} />}
       {userToken && <Route path="/admin/addmodifydeletetool/" exact element={<AddModifyDeleteTool />} />}
+      {userToken && <Route path="/admin/addmodifydeletetool/:id" exact element={<AddModifyDeleteTool />} />}
 
 
       <Route path="/account" element={<Navigate replace to="/account/login" />} />

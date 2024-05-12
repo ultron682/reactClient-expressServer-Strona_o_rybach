@@ -6,30 +6,33 @@ import Navbar from "../../Navbar";
 import Footer from "../../Footer";
 
 export default class AddModifyDeleteTool extends React.Component {
-  state = {
-    tool: {
-      _id: "",
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      _id: "zostanie uzupełnione automatycznie",
       image_url: "",
-      title: ""
-    },
-    image: null,
-  };
+      title: "",
+      image: null,
+    };
+  }
 
   componentDidMount() {
+    console.log(this.state._id);
     try {
-      // var newtool = { ...this.state.tool };
-      // newtool._id = window.location.href.split("/")[5];
-      // this.setState({ tool: newtool });
+      this.setState({ _id: window.location.href.split("/")[5] });
 
-      //this.setState({ tool: {_id: window.location.href.split("/")[5]} });
-      this.state.tool._id = window.location.href.split("/")[5];
-
+      console.log(this.state._id);
       axios
         .get("http://localhost:8080/api/tools/" + this.state.tool._id)
         .then((res) => {
+          console.log(123);
           const tool = res.data.data;
-          //tool.image_url = "http://localhost:8080" + tool.image_url;
-          this.setState({tool: tool });
+
+          this.setState({ _id: tool._id });
+          this.setState({ image_url: tool.image_url });
+          this.setState({ title: tool.title });
+
           console.log(tool);
         });
     } catch (error) {
@@ -43,13 +46,25 @@ export default class AddModifyDeleteTool extends React.Component {
     }
   }
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    const newtool = { ...this.state.tool };
-    console.log(newtool[name]);
-    newtool[name] = value;
-    this.setState({ tool: newtool });
+  handleChangeId = (event) => {
+    this.setState({ _id: event.target.value });
   };
+
+  handleChangeTitle = (event) => {
+    this.setState({ title: event.target.value });
+  };
+
+  handleChangeImageUrl = (event) => {
+    this.setState({ image_url: event.target.value });
+  };
+
+  // handleChange = (e) => {
+  //   // const { name, value } = e.target;
+  //   // const newtool = { ...this.state.tool };
+  //   // console.log(newtool[name]);
+  //   // newtool[name] = value;
+  //   // this.setState({ tool: newtool });
+  // };
 
   deleteTool = async () => {
     const id = this.state.tool._id;
@@ -73,12 +88,19 @@ export default class AddModifyDeleteTool extends React.Component {
 
   updateTool = async () => {
     const id = this.state.tool._id;
+
+    const tool = {
+      _id: this.state._id,
+      image_url: this.state.image_url,
+      title: this.state.title,
+    };
+
     console.log(id);
     const token = localStorage.getItem("token");
     const config = {
       method: "patch",
       url: "http://localhost:8080/api/tools/" + id,
-      data: this.state.tool,
+      data: tool,
       headers: {
         "Content-Type": "application/json",
         "x-access-token": token,
@@ -117,27 +139,6 @@ export default class AddModifyDeleteTool extends React.Component {
     window.location = "/admin";
   };
 
-  // deleteContact = async (id) => {
-  //   console.log(id);
-  //   const token = localStorage.getItem("token");
-  //   const config = {
-  //     method: "delete",
-  //     url: "http://localhost:8080/api/contact",
-  //     data: { _id: id },
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "x-access-token": token,
-  //     },
-  //   };
-  //   //wysłanie żądania o dane:
-  //   const { data: res } = await axios(config);
-  //   console.log(res);
-  //   const contacts = this.state.contacts.filter(
-  //     (contact) => contact._id !== id
-  //   );
-  //   this.setState({ contacts });
-  // };
-
   render() {
     return (
       <div>
@@ -148,19 +149,19 @@ export default class AddModifyDeleteTool extends React.Component {
             <h2>Edycja narzędzia </h2>
             <input
               type="text"
-              onChange={this.handleChange}
+              value={this.state._id}
+              onChange={this.handleChangeId}
               readOnly
-              value={this.state.tool._id}
             ></input>
             <input
               type="text"
-              onChange={this.handleChange}
-              value={this.state.tool.title}
+              value={this.state.title}
+              onChange={this.handleChangeTitle}
             ></input>
             <input
               type="text"
-              onChange={this.handleChange}
-              value={this.state.tool.image_url}
+              value={this.state.image_url}
+              onChange={this.handleChangeImageUrl}
             ></input>
             <button onClick={this.deleteTool}>Usuń narzędzie</button>
 
