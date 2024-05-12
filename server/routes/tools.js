@@ -55,6 +55,19 @@ router.delete("/:id", async (req, res) => {
     });
 });
 
+router.put("/", async (req, res) => {
+  //dodanie nowego narzedzia do bd:
+  const tool = new Tool(req.body);
+  tool
+    .save()
+    .then(() => {
+      //konfiguracja odpowiedzi res z przekazaniem informacji o dodaniu:
+      res.status(201).send({ message: "Narzedzie dodane" });
+    })
+    .catch((error) => {
+      res.status(500).send({ message: error.message });
+    });
+});
 
 // router.delete("/delete", async (req, res) => {
 //   //usuniecie aktualnego użytkownika z bd na podstawie tokena:

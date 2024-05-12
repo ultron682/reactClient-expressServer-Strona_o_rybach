@@ -23,7 +23,7 @@ app.use(express.json())
 const corsOrigin = 'http://localhost:3000';
 app.use(cors({
   origin:[corsOrigin],
-  methods:['GET','POST', 'PATCH', 'DELETE'],
+  methods:['GET','POST', 'PATCH', 'DELETE', 'PUT'],
   credentials: true 
 })); 
 const port = process.env.PORT || 8080
@@ -41,6 +41,7 @@ app.get("/api/users/delete/",tokenVerification)
 app.delete("/api/contact/",tokenVerification)
 app.delete("/api/tools/:id",tokenVerification)
 app.patch("/api/tools/:id",tokenVerification)
+app.put("/api/tools/",tokenVerification)
 
 // trasy nie wymagające tokena
 app.use("/api/users", userRoutes)

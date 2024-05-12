@@ -5,7 +5,7 @@ function Tools(props) {
     <div class="card-group" id="eleContainer">
       {" "}
       {tools.map((tool) => (
-        <div class="card" style={{ minWidth: "300px" }}>
+        <div key={tool._id} class="card" style={{ minWidth: "300px" }}>
           <img src={tool.image_url} alt={tool.title} class="card-img-top" />
           <div class="card-body">
             <h4 class="card-title">{tool.title}</h4>

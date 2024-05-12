@@ -14,27 +14,30 @@ export default class AddModifyDeleteTool extends React.Component {
       image_url: "",
       title: "",
       image: null,
+      newTool: false,
     };
   }
 
   componentDidMount() {
     try {
-      const idFromUrl = window.location.href.split("/")[5];
-      console.log(idFromUrl);
-      this.state._id = idFromUrl;
+      this.setState({ _id: window.location.href.split("/")[5] }, () => {
+        if (this.state._id === "") {
+          this.setState({ newTool: true });
+        }
 
-      console.log(this.state._id);
-      axios
-        .get("http://localhost:8080/api/tools/" + this.state._id)
-        .then((res) => {
-          const tool = res.data.data;
+        console.log(this.state._id);
+        axios
+          .get("http://localhost:8080/api/tools/" + this.state._id)
+          .then((res) => {
+            const tool = res.data.data;
 
-          this.setState({ _id: tool._id });
-          this.setState({ image_url: tool.image_url });
-          this.setState({ title: tool.title });
+            this.setState({ _id: tool._id });
+            this.setState({ image_url: tool.image_url });
+            this.setState({ title: tool.title });
 
-          console.log(tool);
-        });
+            console.log(tool);
+          });
+      });
     } catch (error) {
       console.log(error);
     }
@@ -80,6 +83,37 @@ export default class AddModifyDeleteTool extends React.Component {
     window.location = "/admin";
   };
 
+  handleSubmit = async () => {
+    if (this.state.newTool === true) {
+      this.addTool();
+    } else {
+      this.updateTool();
+    }
+  };
+
+  addTool = async () => {
+    const tool = {
+      image_url: this.state.image_url,
+      title: this.state.title,
+    };
+
+    const token = localStorage.getItem("token");
+    const config = {
+      method: "put",
+      url: "http://localhost:8080/api/tools",
+      data: tool,
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": token,
+      },
+    };
+    //wysłanie żądania o dane:
+    const { data: res } = await axios(config);
+    console.log(res);
+
+    window.location = "/admin";
+  };
+
   updateTool = async () => {
     const id = this.state._id;
 
@@ -113,16 +147,22 @@ export default class AddModifyDeleteTool extends React.Component {
     const formData = new FormData();
     formData.append("my-image-file", e.target.files[0], e.target.files[0].name);
     const image = formData;
-    this.setState({ image });
+    this.setState({ image }, () => {
+      this.imageUpload();
+    });
   };
 
-  handleClick = () => {
+  imageUpload = () => {
     axios
       .post("http://localhost:8080/api/image-upload", this.state.image)
       .then((res) => {
         console.log("Axios response: ", res.data.imageUrl);
 
-        this.setState({ imageUrl: res.data.imageUrl });
+        //this.state.image_url = res.data.imageUrl;
+
+        this.setState({ image_url: res.data.imageUrl }, () => {
+          console.log(this.state.image_url);
+        });
       });
   };
 
@@ -137,29 +177,44 @@ export default class AddModifyDeleteTool extends React.Component {
         <main>
           <div class="content">
             <br />
-            <h2>Edycja narzędzia </h2>
-            <input
-              type="text"
-              value={this.state._id}
-              onChange={this.handleChangeId}
-              readOnly
-            ></input>
+            {this.state.newTool === false ? (
+              <>
+                <h2>Edycja narzędzia </h2>
+                <input
+                  type="text"
+                  value={this.state._id}
+                  onChange={this.handleChangeId}
+                  visible={this.state.readOnly}
+                  placeholder="ID narzędzia"
+                  readOnly
+                ></input>
+              </>
+            ) : (
+              <h2>Dodawanie nowego narzędzia</h2>
+            )}
             <input
               type="text"
               value={this.state.title}
               onChange={this.handleChangeTitle}
+              placeholder="Tytuł narzędzia"
             ></input>
             <input
               type="text"
               value={this.state.image_url}
               onChange={this.handleChangeImageUrl}
+              placeholder="URL obrazka narzędzia (uzupełniany automatycznie po uploadzie!)"
+              readOnly
             ></input>
-            <button onClick={this.deleteTool}>Usuń narzędzie</button>
+            {this.state.newTool === false ? (
+              <button onClick={this.deleteTool}>Usuń narzędzie</button>
+            ) : null}
 
-            <button onClick={this.handleClick}>Upload!</button>
+            {/* <button onClick={this.handleClick}>Upload!</button> */}
             <input type="file" onChange={this.handleFileInput} />
 
-            <button onClick={this.updateTool}>Zapisz zmiany</button>
+            <button onClick={this.handleSubmit}>
+              {this.state.newTool === false ? "Zapisz zmiany" : "Dodaj nowy"}
+            </button>
             <button onClick={this.cancelClick}>Anuluj</button>
           </div>
         </main>
