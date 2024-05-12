@@ -10,7 +10,7 @@ export default class AddModifyDeleteTool extends React.Component {
     super(props);
 
     this.state = {
-      _id: "zostanie uzupełnione automatycznie",
+      _id: "",
       image_url: "",
       title: "",
       image: null,
@@ -18,15 +18,15 @@ export default class AddModifyDeleteTool extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.state._id);
     try {
-      this.setState({ _id: window.location.href.split("/")[5] });
+      const idFromUrl = window.location.href.split("/")[5];
+      console.log(idFromUrl);
+      this.state._id = idFromUrl;
 
       console.log(this.state._id);
       axios
-        .get("http://localhost:8080/api/tools/" + this.state.tool._id)
+        .get("http://localhost:8080/api/tools/" + this.state._id)
         .then((res) => {
-          console.log(123);
           const tool = res.data.data;
 
           this.setState({ _id: tool._id });
@@ -36,13 +36,7 @@ export default class AddModifyDeleteTool extends React.Component {
           console.log(tool);
         });
     } catch (error) {
-      if (
-        error.response &&
-        error.response.status >= 400 &&
-        error.response.status <= 500
-      ) {
-        console.log(error);
-      }
+      console.log(error);
     }
   }
 
@@ -67,7 +61,7 @@ export default class AddModifyDeleteTool extends React.Component {
   // };
 
   deleteTool = async () => {
-    const id = this.state.tool._id;
+    const id = this.state._id;
     console.log(id);
     const token = localStorage.getItem("token");
     const config = {
@@ -87,7 +81,7 @@ export default class AddModifyDeleteTool extends React.Component {
   };
 
   updateTool = async () => {
-    const id = this.state.tool._id;
+    const id = this.state._id;
 
     const tool = {
       _id: this.state._id,
@@ -128,10 +122,7 @@ export default class AddModifyDeleteTool extends React.Component {
       .then((res) => {
         console.log("Axios response: ", res.data.imageUrl);
 
-        //this.state.tool.image_url = res.data.imageUrl;
-        var newtool = { ...this.state.tool };
-        newtool.image_url = res.data.imageUrl;
-        this.setState({ tool: newtool });
+        this.setState({ imageUrl: res.data.imageUrl });
       });
   };
 
