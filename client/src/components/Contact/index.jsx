@@ -35,7 +35,6 @@ const ContactForm = () => {
       // axios
       console.log(formData);
 
-
       axios
         .post("http://localhost:8080/api/contact", formData)
         .then((response) => {
@@ -68,22 +67,26 @@ const ContactForm = () => {
 
   const validateForm = (formData) => {
     let errors = {};
-  
+
     if (!formData.firstName.trim()) {
       errors.firstName = "Pole Imię jest wymagane";
     } else if (!/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+$/u.test(formData.firstName)) {
       errors.firstName = "Niepoprawny format Imienia";
     }
-  
+
     if (!formData.lastName.trim()) {
       errors.lastName = "Pole Nazwisko jest wymagane";
     } else if (!/^[a-zA-ZąćęłńóśźżĄĘŁŃÓŚŹŻ]+$/u.test(formData.lastName)) {
       errors.lastName = "Niepoprawny format Nazwiska";
     }
-  
+
     if (!formData.age.trim()) {
       errors.age = "Pole Wiek jest wymagane";
-    } else if (isNaN(formData.age) || parseInt(formData.age) <= 0 || !Number.isInteger(parseFloat(formData.age))) {
+    } else if (
+      isNaN(formData.age) ||
+      parseInt(formData.age) <= 0 ||
+      !Number.isInteger(parseFloat(formData.age))
+    ) {
       errors.age = "Wiek musi być dodatnią liczbą całkowitą";
     }
 
@@ -94,18 +97,17 @@ const ContactForm = () => {
     } else if (formData.phone.trim().length < 9) {
       errors.phone = "Numer telefonu musi mieć co najmniej 9 znaków";
     }
-    
-  
+
     if (!formData.email.trim()) {
       errors.email = "Pole Adres e-mail jest wymagane";
     } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
       errors.email = "Niepoprawny format Adresu e-mail";
     }
-  
+
     if (!formData.desc.trim()) {
       errors.desc = "Pole opisu problemu jest wymagane";
     }
-  
+
     return errors;
   };
 
@@ -128,136 +130,142 @@ const ContactForm = () => {
 
             <h2>Formularz zgłoszenia</h2>
             <form onSubmit={handleSubmit}>
-  <table>
-    <tbody>
-      <tr>
-        <td>
-          <label htmlFor="firstName">Imię:</label>
-        </td>
-        <td>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-          />
-          {errors.firstName && (
-            <span style={{ color: "red" }}>{errors.firstName}</span>
-          )}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label htmlFor="lastName">Nazwisko:</label>
-        </td>
-        <td>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-          />
-          {errors.lastName && (
-            <span style={{ color: "red" }}>{errors.lastName}</span>
-          )}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label htmlFor="age">Wiek:</label>
-        </td>
-        <td>
-          <input
-            type="number"
-            id="age"
-            name="age"
-            value={formData.age}
-            onChange={handleChange}
-          />
-          {errors.age && (
-            <span style={{ color: "red" }}>{errors.age}</span>
-          )}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label htmlFor="country">Państwo:</label>
-        </td>
-        <td>
-          <select
-            id="country"
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-          >
-            <option value="Polska">Polska</option>
-            <option value="Niemcy">Niemcy</option>
-            <option value="Francja">Francja</option>
-          </select>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label htmlFor="phone">Telefon:</label>
-        </td>
-        <td>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-          />
-          {errors.phone && (
-            <span style={{ color: "red" }}>{errors.phone}</span>
-          )}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label htmlFor="email">Adres e-mail:</label>
-        </td>
-        <td>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && (
-            <span style={{ color: "red" }}>{errors.email}</span>
-          )}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <label htmlFor="desc">Opis problemu:</label>
-        </td>
-        <td>
-          <textarea
-            id="desc"
-            name="desc"
-            value={formData.desc}
-            onChange={handleChange}
-          />
-          {errors.desc && (
-            <span style={{ color: "red" }}>{errors.desc}</span>
-          )}
-        </td>
-      </tr>
-      <tr>
-        <td></td>
-        <td>
-          <button type="submit">Wyślij</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</form>
-
+              <table>
+                <tbody>
+                  <tr  class="form-group">
+                    <td>
+                      <label htmlFor="firstName">Imię:</label>
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        id="firstName"
+                        name="firstName"
+                        value={formData.firstName}
+                        class="form-control"
+                        onChange={handleChange}
+                      />
+                      {errors.firstName && (
+                        <span style={{ color: "red" }}>{errors.firstName}</span>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="lastName">Nazwisko:</label>
+                    </td>
+                    <td>
+                      <input
+                        type="text"
+                        id="lastName"
+                        name="lastName"
+                        value={formData.lastName}
+                        class="form-control"
+                        onChange={handleChange}
+                      />
+                      {errors.lastName && (
+                        <span style={{ color: "red" }}>{errors.lastName}</span>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="age">Wiek:</label>
+                    </td>
+                    <td>
+                      <input
+                        type="number"
+                        id="age"
+                        name="age"
+                        value={formData.age}
+                        class="form-control"
+                        onChange={handleChange}
+                      />
+                      {errors.age && (
+                        <span style={{ color: "red" }}>{errors.age}</span>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="country">Państwo:</label>
+                    </td>
+                    <td>
+                      <select
+                        id="country"
+                        name="country"
+                        value={formData.country}
+                        class="form-control"
+                        onChange={handleChange}
+                      >
+                        <option value="Polska">Polska</option>
+                        <option value="Niemcy">Niemcy</option>
+                        <option value="Francja">Francja</option>
+                      </select>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="phone">Telefon:</label>
+                    </td>
+                    <td>
+                      <input
+                        type="tel"
+                        id="phone"
+                        name="phone"
+                        value={formData.phone}
+                        class="form-control"
+                        onChange={handleChange}
+                      />
+                      {errors.phone && (
+                        <span style={{ color: "red" }}>{errors.phone}</span>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="email">Adres e-mail:</label>
+                    </td>
+                    <td>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        class="form-control"
+                        onChange={handleChange}
+                      />
+                      {errors.email && (
+                        <span style={{ color: "red" }}>{errors.email}</span>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <label htmlFor="desc">Opis problemu:</label>
+                    </td>
+                    <td>
+                      <textarea
+                        id="desc"
+                        name="desc"
+                        value={formData.desc}
+                        onChange={handleChange}
+                        class="form-control"
+                      />
+                      {errors.desc && (
+                        <span style={{ color: "red" }}>{errors.desc}</span>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td></td>
+                    <td>
+                      <button class="btn btn-primary" type="submit">Wyślij</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </form>
           </div>
         </div>
       </main>

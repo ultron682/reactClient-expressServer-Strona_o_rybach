@@ -49,7 +49,7 @@ app.use("/api/auth", authRoutes)
 
 // trasa do przesłania wszystkich narzędzi z bazy i kolekcji tools
 app.use("/api/tools", toolRoutes)
-// trasa do przesłania wszystkich narzędzi z bazy i kolekcji contact
+// trasa do przesłania wszystkich zgłoszen z bazy i kolekcji contact
 app.use("/api/contact", contactRoutes)
 
 
@@ -60,7 +60,7 @@ const storage = multer.diskStorage({
     cb(null, imageUploadPath)
   },
   filename: function(req, file, cb) {
-    cb(null, `${file.fieldname}_dateVal_${Date.now()}_${file.originalname}`)
+    cb(null, `${Date.now()}_${file.originalname}`)
   }
 })
 
