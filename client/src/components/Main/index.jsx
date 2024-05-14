@@ -9,7 +9,6 @@ import img1 from "./1.jpg";
 import img2 from "./2.jpg";
 import img3 from "./3.jpg";
 
-// const images = [img1, img2, img3];
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css'
 

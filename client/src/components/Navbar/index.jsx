@@ -1,11 +1,9 @@
 //import styles from "./styles.module.css";
 import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 import { IoClose, IoMenu } from "react-icons/io5";
 
-import Users from "../Users"; // Import the 'Users' component
-import UserInfo from "../UserInfo";
 import "./navbar.css";
 
 export default class Navbar extends React.Component {

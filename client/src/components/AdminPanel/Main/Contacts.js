@@ -7,7 +7,7 @@ function Contacts(props) {
       {contacts.map((contact) => (
         <div key={contact._id} class="card" style={{ minWidth: "300px" }}>
           {contact.firstName} {contact.lastName}  <br />
-          wiek: ({contact.age} lat) {" "} <br />
+          wiek: {contact.age} lat {" "} <br />
           państwo: {contact.country} <br />
           tel: {contact.phone} <br />
           email: {contact.email} <br />

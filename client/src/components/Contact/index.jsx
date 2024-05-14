@@ -95,7 +95,9 @@ const ContactForm = () => {
     } else if (!/^\+?[0-9\-]+$/.test(formData.phone)) {
       errors.phone = "Niepoprawny format Telefonu";
     } else if (formData.phone.trim().length < 9) {
-      errors.phone = "Numer telefonu musi mieć co najmniej 9 znaków";
+      errors.phone = "Numer telefonu musi mieć 9 cyfr";
+    } else if (formData.phone.trim().length > 9) {
+      errors.phone = "Numer telefonu musi mieć 9 cyfr";
     }
 
     if (!formData.email.trim()) {

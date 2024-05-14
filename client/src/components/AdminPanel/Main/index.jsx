@@ -16,17 +16,28 @@ export default class AdminPanel extends React.Component {
     tools: [],
   };
 
-  componentDidMount() {
+  componentDidMount = async() => {
     try {
-      axios.get("http://localhost:8080/api/contact").then((res) => {
-        const contacts = res.data.data;
-        contacts.map((tool) => {
-          tool.image_url = "http://localhost:8080/" + tool.image_url;
-          return tool;
-        });
-        this.setState({ contacts });
-        console.log(contacts);
+      const token = localStorage.getItem("token");
+      const config = {
+        method: "get",
+        url: "http://localhost:8080/api/contact",
+        headers: {
+          "Content-Type": "application/json",
+          "x-access-token": token,
+        },
+      };
+      //wysłanie żądania o dane:
+      const { data: res } = await axios(config);
+      console.log(res.data);
+
+      const contacts = res.data;
+      contacts.map((tool) => {
+        tool.image_url = "http://localhost:8080/" + tool.image_url;
+        return tool;
       });
+      this.setState({ contacts });
+      console.log(contacts);
 
       axios.get("http://localhost:8080/api/tools").then((res) => {
         const tools = res.data.data;
@@ -96,9 +107,7 @@ export default class AdminPanel extends React.Component {
             <Tools tools={this.state.tools} editTool={this.editTool}></Tools>
 
             <Link to="/admin/addmodifydeletetool/">
-              <button>
-                Dodaj nowe narzędzie
-              </button>
+              <button>Dodaj nowe narzędzie</button>
             </Link>
           </div>
         </main>

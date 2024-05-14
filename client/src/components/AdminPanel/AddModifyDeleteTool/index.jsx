@@ -123,7 +123,7 @@ export default class AddModifyDeleteTool extends React.Component {
       title: this.state.title,
     };
 
-    console.log(id);
+    //console.log(id);
     const token = localStorage.getItem("token");
     const config = {
       method: "patch",
@@ -152,18 +152,23 @@ export default class AddModifyDeleteTool extends React.Component {
     });
   };
 
-  imageUpload = () => {
+  imageUpload(){
+    const token = localStorage.getItem("token");
+
     axios
-      .post("http://localhost:8080/api/image-upload", this.state.image)
-      .then((res) => {
-        console.log("Axios response: ", res.data.imageUrl);
+    .post("http://localhost:8080/api/image-upload", this.state.image, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "x-access-token": token,
+      }
+    })
+    .then((res) => {
+      console.log("Axios response: ", res.data.imageUrl);
 
-        //this.state.image_url = res.data.imageUrl;
-
-        this.setState({ image_url: res.data.imageUrl }, () => {
-          console.log(this.state.image_url);
-        });
+      this.setState({ image_url: res.data.imageUrl }, () => {
+        console.log(this.state.image_url);
       });
+    });
   };
 
   cancelClick = () => {
