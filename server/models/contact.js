@@ -9,7 +9,6 @@ const contactSchema = new mongoose.Schema({
   country: { type: String, required: true },
   phone: { type: String, required: true },
   email: { type: String, required: true },
-  // date: { type: Date, default: Date.now },
   desc: { type: String, required: true },
 });
 

@@ -18,7 +18,6 @@ const Footer = () => {
           <a href="https://github.com/ultron682">
             https://github.com/ultron682
           </a>
-          <a href="./skadPomysl.html">Skąd pomysł na stronę?</a>
         </div>
 
         <div class="desc">

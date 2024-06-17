@@ -49,6 +49,8 @@ export default class AdminPanel extends React.Component {
         console.log(tools);
       });
     } catch (error) {
+      window.location = "/";
+
       if (
         error.response &&
         error.response.status >= 400 &&

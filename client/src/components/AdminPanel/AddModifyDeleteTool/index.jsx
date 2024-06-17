@@ -97,6 +97,11 @@ export default class AddModifyDeleteTool extends React.Component {
       title: this.state.title,
     };
 
+
+    if(this.state.title === ""){
+      return;
+          }
+
     const token = localStorage.getItem("token");
     const config = {
       method: "put",
@@ -122,6 +127,10 @@ export default class AddModifyDeleteTool extends React.Component {
       image_url: this.state.image_url,
       title: this.state.title,
     };
+
+    if(this.state.title === ""){
+return;
+    }
 
     //console.log(id);
     const token = localStorage.getItem("token");
@@ -215,7 +224,7 @@ export default class AddModifyDeleteTool extends React.Component {
             ) : null}
 
             {/* <button onClick={this.handleClick}>Upload!</button> */}
-            <input type="file" onChange={this.handleFileInput} />
+            <input type="file" accept="image/png, image/jpeg"  onChange={this.handleFileInput} />
 
             <button onClick={this.handleSubmit}>
               {this.state.newTool === false ? "Zapisz zmiany" : "Dodaj nowy"}

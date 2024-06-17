@@ -30,6 +30,12 @@ router.get("/:id", async (req, res) => {
 });
 
 router.patch("/:id", async (req, res) => {
+  //walidacja danych z formularza:
+  const { error } = validate(req.body);
+  if (error) {
+    return res.status(400).send({ message: error.details[0].message });
+  }
+
   //aktualizacja narzedzia w bd na podstawie id:
   Tool.findByIdAndUpdate(req.params.id, req.body)
     .exec()
@@ -56,6 +62,12 @@ router.delete("/:id", async (req, res) => {
 });
 
 router.put("/", async (req, res) => {
+  //walidacja danych z formularza:
+  const { error } = validate(req.body);
+  if (error) {
+    return res.status(400).send({ message: error.details[0].message });
+  }
+
   //dodanie nowego narzedzia do bd:
   const tool = new Tool(req.body);
   tool
